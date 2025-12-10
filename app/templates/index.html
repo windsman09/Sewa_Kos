@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sewa Kos</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header class="navbar">
+      <div class="logo">SewaKos</div>
+      <nav>
+        <a href="/">Beranda</a>
+        <a href="/tambah">Daftar kos</a>
+        <a href="#">Kontak</a>
+      </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <h1>Cari Kos Impianmu Dengan Mudah</h1>
+      <p>Temukan kos murah, aman, dan nyaman di berbagai lokasi.</p>
+
+      <form class="search-box">
+        <input
+          type="text"
+          placeholder="Cari kos berdasarkan nama atau lokasi..."
+        />
+        <button>Cari</button>
+      </form>
+    </section>
+
+    <!-- LIST KOS -->
+    <section class="container">
+      <h2>Daftar Kos</h2>
+
+      <div class="grid">
+        {% for item in kos %}
+        <div class="card">
+          <img
+            src="{{ item.gambar or 'https://via.placeholder.com/300' }}"
+            alt="Kos"
+          />
+
+          <div class="card-body">
+            <h3>{{ item.nama }}</h3>
+            <p class="harga">Rp {{ item.harga }}/bulan</p>
+            <p class="alamat">{{ item.alamat }}</p>
+
+            <a class="btn-detail" href="/detail/{{ item.id }}">Lihat Detail</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </body>
+</html>
