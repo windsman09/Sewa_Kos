@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tambah Kos</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container-form">
+      <h2>Tambah Data Kos</h2>
+
+      <form action="/tambah" method="post" enctype="multipart/form-data">
+        <label>Nama Kos</label>
+        <input type="text" name="nama" placeholder="Nama Kos" required />
+
+        <label>Alamat</label>
+        <input type="text" name="alamat" placeholder="Alamat" required />
+
+        <label>Harga / bulan</label>
+        <input
+          type="number"
+          name="harga"
+          placeholder="Harga"
+          min="0"
+          required
+        />
+
+        <label>Deskripsi</label>
+        <textarea name="deskripsi" placeholder="Deskripsi kos"></textarea>
+
+        <label>Foto Kos</label>
+        <input type="file" name="image" accept="image/*" />
+
+        <button type="submit">Simpan</button>
+      </form>
+    </div>
+  </body>
+</html>

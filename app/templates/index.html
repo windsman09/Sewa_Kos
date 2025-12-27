@@ -15,7 +15,7 @@
       <div class="logo">SewaKos</div>
       <nav>
         <a href="/">Beranda</a>
-        <a href="/tambah">Daftar kos</a>
+        <a href="/tambah">Daftar Kos</a>
         <a href="#">Kontak</a>
       </nav>
     </header>
@@ -25,33 +25,37 @@
       <h1>Cari Kos Impianmu Dengan Mudah</h1>
       <p>Temukan kos murah, aman, dan nyaman di berbagai lokasi.</p>
 
-      <form class="search-box">
+      <form class="search-box" method="get" action="/">
         <input
           type="text"
+          name="q"
           placeholder="Cari kos berdasarkan nama atau lokasi..."
+          value="{{ q or '' }}"
         />
-        <button>Cari</button>
+        <button type="submit">Cari</button>
       </form>
     </section>
 
     <!-- LIST KOS -->
     <section class="container">
-      <h2>Daftar Kos</h2>
+      <a href="/tambah"><h2>Daftar Kos</h2></a>
 
       <div class="grid">
         {% for item in kos %}
         <div class="card">
           <img
-            src="{{ item.gambar or 'https://via.placeholder.com/300' }}"
-            alt="Kos"
+            src="{{ url_for('static', path='uploads/' + (item.image or 'default.jpg')) }}"
+            alt="{{ item.nama }}"
+            class="kos-img"
           />
 
           <div class="card-body">
             <h3>{{ item.nama }}</h3>
             <p class="harga">Rp {{ item.harga }}/bulan</p>
             <p class="alamat">{{ item.alamat }}</p>
-
-            <a class="btn-detail" href="/detail/{{ item.id }}">Lihat Detail</a>
+            <a class="btn-detail" href="/detail/{{ item.id }}">
+              Lihat Detail
+            </a>
           </div>
         </div>
         {% endfor %}
